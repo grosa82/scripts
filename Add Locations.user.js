@@ -2,7 +2,7 @@
 // @name         Add Locations
 // @namespace    */DealerApp/DealerAppLocations*
 // @version      0.1
-// @description  try to take over the world!
+// @description  Autofill all the fields when adding a location on a dealer application
 // @author       You
 // @match        http://*/DealerApp/DealerAppLocations*
 // @exclude      https://dealers.crestfinancial.com*
