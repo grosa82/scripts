@@ -2,7 +2,7 @@
 // @name         Automated Dealer Edit
 // @namespace    */Dealers/Edit/*
 // @version      0.1
-// @description  Automatically check some one the common permissions and finance plans for a retailer.
+// @description  Automatically add some of the most common permissions and finance plans for a new, inactive retailer. When asked if you want a demo retailer, "OK" means "Yes". 
 // @author       You
 // @match        http://*/Dealers/Edit/*
 // @grant        none

@@ -2,7 +2,7 @@
 // @name         Autofill invoice stuff
 // @namespace    */DealerApp/ItemPricing*
 // @version      0.1
-// @description  Script to automatically fill in invoice fields
+// @description  Script to automatically fill in invoice fields after applying through a retailer
 // @author       Eduardo Martinez
 // @match        http://*/DealerApp/ItemPricing*
 // @match        http://*/Applicants/DealerDetails*
