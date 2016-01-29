@@ -56,7 +56,7 @@ function findMaxFromPlace(x) {
         y += 9 * n;
         n *= 10;
     }
-    
+
     return y;
 }
 
@@ -65,7 +65,7 @@ function randomNumWithXDigits(n) {
     // y = 99999
     // x = 10000
     // result example: 12345
-    
+
     var y = findMaxFromPlace(n);
     var x = findPlace(y);
     return Math.floor(Math.random() * (y - x) + x);
@@ -89,10 +89,10 @@ function hasCoApplicant() {
 
 function appendLessThan10(x) {
     // Appends a 0 in from of any number less than 10
-    if(x < 10) {
+    if (x < 10) {
         x = "0" + x;
     }
-    
+
     return x;
 }
 
@@ -102,7 +102,7 @@ var hasCoApp = hasCoApplicant();
 $.ajax({
     url: 'http://api.randomuser.me/',
     dataType: 'json',
-    success: function(data){
+    success: function (data) {
         var user = data.results[0].user;
         var firstName = capitalizeFirstLetter(user.name.first);
         var lastName = capitalizeFirstLetter(user.name.last);
@@ -115,18 +115,17 @@ $.ajax({
         $("#LastName").val(lastName);
         $("#EmailAddress").val(email);
         $("#StreetLine1").val(streetLine1);
-        
+
         $("#CardholderName").val(firstName + ' ' + lastName);
-        
-        if(hasCoApp)
-        {
+
+        if (hasCoApp) {
             $('input[id=CoApplicant]').prop('checked', true).change();
             $("#HasCoApplicant").val(true);
-            
+
             $.ajax({
                 url: 'http://api.randomuser.me/',
                 dataType: 'json',
-                success: function(coAppData){
+                success: function (coAppData) {
                     var coAppUser = coAppData.results[0].user;
                     var coAppFirstName = capitalizeFirstLetter(coAppUser.name.first);
                     var coAppLastName = capitalizeFirstLetter(coAppUser.name.last);
@@ -138,7 +137,7 @@ $.ajax({
                     $("#CoApplicantEmailAddress").val(coAppEmail);
                 }
             });
-            
+
             $('input[id=SameApplicantAddress]').prop('checked', true).change();
             $("#SameAsApplicantAddress").val(true);
         }
@@ -159,19 +158,17 @@ $("#DateOfBirth").val(dobMonth + "/" + dobDay + "/" + dobYear);
 $("#SocialSecurityNumber").val(randomSocial());
 $("#PrimaryPhone").val(randomPhone());
 $("#SecondaryPhone").val(randomPhone());
-$("#SecondaryPhoneCell")[0].checked = true;
 $("#IsSecondaryPhoneCell").val(true);
 $("#City").val("Salt Lake City");
 $("#StateID").val("UT");
 $("#PostalCode").val(randomNumWithXDigits(5));
 
-if($("#DriversLicenseRequired").val().toLowerCase() === "true")
-{
+if ($("#DriversLicenseRequired").val().toLowerCase() === "true") {
     $("#DriversLicenseNumber").val("DRIVERS-LICENSE-" + randomNumWithXDigits(7));
     $("#DriversLicenseState").val("UT");
 }
 
-$("#MonthlyIncome").val(randomNumBetween(2,15) * 1000);
+$("#MonthlyIncome").val(randomNumBetween(2, 15) * 1000);
 
 // BANK & CARD INFO
 var hba = $("#HasBankAccount").val().toLowerCase() === "true";
@@ -182,12 +179,12 @@ var fpr = $("#FirstPaymentRequired").val().toLowerCase() === "true";
 var bankInfoReq = (!uba || hba);
 var cardInfoReq = (fpr || ipr || (uba && !hba));
 
-if(bankInfoReq) {
-    $("#AccountNumber").val(randomNumWithXDigits(14));
+if (bankInfoReq) {
+    $("#AccountNumberEntry").val(randomNumWithXDigits(14));
     $("#RoutingNumber").val("122000030");
     $("#BankName").val("BANK OF AMERICA NA");
-    
-    var openMonth = appendLessThan10(randomNumBetween(1,5));
+
+    var openMonth = appendLessThan10(randomNumBetween(1, 5));
     var openYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
     $("#AccountOpenDate").val(openMonth + "/" + openYear);
 } else {
@@ -197,14 +194,14 @@ if(bankInfoReq) {
     $("#AccountOpenDate").val('');
 }
 
-if(cardInfoReq) {
+if (cardInfoReq) {
     $("#CardholderName").val($("#FirstName").val() + ' ' + $("#LastName").val());
-    $("#CardNumber").val("4111111111111111");
-    $("#ExpirationMonth").val(appendLessThan10(randomNumBetween(1,12)));
+    $("#CardNumberEntry").val("4111111111111111");
+    $("#ExpirationMonth").val(appendLessThan10(randomNumBetween(1, 12)));
     $("#ExpirationYear").val(randomNumBetween(2016, 2019));
 } else {
     $("#CardholderName").val('');
-    $("#CardNumber").val('');
+    $("#CardNumberEntry").val('');
     $("#ExpirationMonth").val('');
     $("#ExpirationYear").val('');
 }
@@ -219,7 +216,7 @@ $("#Reference2PhoneNumber").val(randomPhone());
 $("#EmployerName").val("Run Run Company");
 $("#EmployerPhone").val(randomPhone());
 var hireDay = appendLessThan10(randomNumBetween(1, 28));
-var hireMonth = appendLessThan10(randomNumBetween(1,12));
+var hireMonth = appendLessThan10(randomNumBetween(1, 12));
 var hireYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
 $("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 $("#LastPayDate").val(month + "/01/" + year);
@@ -230,7 +227,7 @@ $("#PayPeriodTypeID").val(3);
 if (hasCoApp) {
     $("#CoApplicantEmployerName").val("MgRonald's");
     var coHireDay = appendLessThan10(randomNumBetween(1, 28));
-    var coHireMonth = appendLessThan10(randomNumBetween(1,12));
+    var coHireMonth = appendLessThan10(randomNumBetween(1, 12));
     var coHireYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
     $("#CoApplicantHireDate").val(coHireMonth + "/" + coHireDay + "/" + coHireYear);
     var coDobYear = randomNumBetween(year - 70, year - 21);
@@ -238,7 +235,7 @@ if (hasCoApp) {
     var coDobDay = appendLessThan10(randomNumBetween(1, 28)); //in case of Feb
     $("#CoApplicantDateOfBirth").val(coDobMonth + "/" + coDobDay + "/" + coDobYear);
     $("#CoApplicantSocialSecurityNumber").val(randomSocial());
-    $("#CoApplicantMonthlyIncome").val(randomNumBetween(1,5) * 1000);
+    $("#CoApplicantMonthlyIncome").val(randomNumBetween(1, 5) * 1000);
     $("#CoApplicantPrimaryPhone").val(randomPhone());
     $("#CoApplicantSecondaryPhone").val(randomPhone());
     $("#CoApplicantPrimaryPhoneCell")[0].checked = true;
@@ -246,8 +243,8 @@ if (hasCoApp) {
 }
 
 //CLEAR COAPPLICANT INFO IF CHECKBOX BECOMES UNCHECKED
-$("#CoApplicant").change(function() {
-    if(!$("#CoApplicant").is(':checked')) {
+$("#CoApplicant").change(function () {
+    if (!$("#CoApplicant").is(':checked')) {
         $("#CoApplicantFirstName").val('');
         $("#CoApplicantLastName").val('');
         $("#CoApplicantEmailAddress").val('');
@@ -272,10 +269,10 @@ $("#CoApplicant").change(function() {
 });
 
 //UPDATE BANK & CARD INFO BASED ON THEIR DYNAMIC REQUIREMENTS
-$("#BankAccount").change(function() {
-    var month = appendLessThan10(randomNumBetween(1,12));
+$("#BankAccount").change(function () {
+    var month = appendLessThan10(randomNumBetween(1, 12));
     var year = randomNumBetween(2016, 2019);
-    
+
     var firstName = $("#FirstName").val().toString();
     var lastName = $("#LastName").val().toString();
 
@@ -287,28 +284,28 @@ $("#BankAccount").change(function() {
     var bankInfoReq = (!uba || hba);
     var cardInfoReq = (fpr || ipr || (uba && !hba));
 
-    if(bankInfoReq) {
-        $("#AccountNumber").val(randomNumWithXDigits(14));
+    if (bankInfoReq) {
+        $("#AccountNumberEntry").val(randomNumWithXDigits(14));
         $("#RoutingNumber").val("122000030");
         $("#BankName").val("BANK OF AMERICA NA");
-        var openMonth = appendLessThan10(randomNumBetween(1,12));
+        var openMonth = appendLessThan10(randomNumBetween(1, 12));
         var openYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
         $("#AccountOpenDate").val(openMonth + "/" + openYear);
     } else {
-        $("#AccountNumber").val('');
+        $("#AccountNumberEntry").val('');
         $("#RoutingNumber").val('');
         $("#BankName").val('');
-        $("#AccountOpenDate").val('');  
+        $("#AccountOpenDate").val('');
     }
 
-    if(cardInfoReq) {
+    if (cardInfoReq) {
         $("#CardholderName").val(firstName + ' ' + lastName);
-        $("#CardNumber").val("4111111111111111");
+        $("#CardNumberEntry").val("4111111111111111");
         $("#ExpirationMonth").val(month);
         $("#ExpirationYear").val(year + 2);
     } else {
         $("#CardholderName").val('');
-        $("#CardNumber").val('');
+        $("#CardNumberEntry").val('');
         $("#ExpirationMonth").val('');
         $("#ExpirationYear").val('');
     }
