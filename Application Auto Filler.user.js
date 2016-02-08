@@ -96,6 +96,23 @@ function appendLessThan10(x) {
     return x;
 }
 
+function randomValidCC(digits) {
+    function luhn(d) {
+        var res = 0;
+        var inc = d.length % 2;
+        for (var i = 0; i < d.length; ++i) {
+            var n = Number(d.charAt(i)) * (2 - (i + inc) % 2);
+            res += n > 9 ? n - 9 : n;
+        }
+        return res;
+    }
+    var checksum = luhn(digits) % 10;
+    var cs = luhn(digits + "0") % 10;
+    var checkdigit = cs ? 10 - cs : 0;
+
+    return digits + checkdigit;
+};
+
 /* ----------------------------------------------- */
 var hasCoApp = hasCoApplicant();
 
@@ -180,13 +197,13 @@ var bankInfoReq = (!uba || hba);
 var cardInfoReq = (fpr || ipr || (uba && !hba));
 
 if (bankInfoReq) {
-    $("#AccountNumberEntry").val(randomNumWithXDigits(14));
+    $("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
     $("#RoutingNumber").val("122000030");
     $("#BankName").val("BANK OF AMERICA NA");
-
     var openMonth = appendLessThan10(randomNumBetween(1, 5));
     var openYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
     $("#AccountOpenDate").val(openMonth + "/" + openYear);
+
 } else {
     $("#AccountNumber").val('');
     $("#RoutingNumber").val('');
@@ -196,15 +213,17 @@ if (bankInfoReq) {
 
 if (cardInfoReq) {
     $("#CardholderName").val($("#FirstName").val() + ' ' + $("#LastName").val());
-    $("#CardNumberEntry").val("4111111111111111");
+    $("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
     $("#ExpirationMonth").val(appendLessThan10(randomNumBetween(1, 12)));
     $("#ExpirationYear").val(randomNumBetween(2016, 2019));
+
 } else {
     $("#CardholderName").val('');
     $("#CardNumberEntry").val('');
     $("#ExpirationMonth").val('');
     $("#ExpirationYear").val('');
 }
+
 
 // REFERENCES INFO
 $("#Reference1Name").val("Yamamoto Kun");
@@ -243,7 +262,7 @@ if (hasCoApp) {
 }
 
 //CLEAR COAPPLICANT INFO IF CHECKBOX BECOMES UNCHECKED
-$("#CoApplicant").change(function () {
+    $("#CoApplicant").change(function () {
     if (!$("#CoApplicant").is(':checked')) {
         $("#CoApplicantFirstName").val('');
         $("#CoApplicantLastName").val('');
