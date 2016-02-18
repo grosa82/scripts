@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         New User Auto Filler
 // @namespace    */Users/Create*
-// @version      1.0
+// @version      1.01
 // @description  Automatically fills out information needed to create a new user
 // @author       Eduardo Martinez
 // @match        http://*/Users/Create*
