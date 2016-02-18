@@ -119,7 +119,7 @@ var salesTax = confirm("Are you testing sales tax?");
 
 alert("If you're on the agent portal, and a card is needed, you'll have to update the nunber yourself... sorry :/");
 $.ajax({
-    url: 'http://api.randomuser.me/',
+    url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
     success: function (data) {
         var user = data.results[0].user;
@@ -231,7 +231,7 @@ $("#HasCoApplicant, #CoApplicant").change(function () { //agent
     if ($("#HasCoApplicant, #CoApplicant").is(':checked')) {
 
         $.ajax({
-            url: 'http://api.randomuser.me/',
+            url: 'http://api.randomuser.me/?nat=us',
             dataType: 'json',
             success: function (coAppData) {
                 var coAppUser = coAppData.results[0].user;

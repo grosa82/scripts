@@ -93,7 +93,7 @@ function appendLessThan10(x) {
 /* ----------------------------------------------- */
 
 $.ajax({
-    url: 'http://api.randomuser.me/',
+    url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
     success: function(data){
         var user = data.results[0].user;

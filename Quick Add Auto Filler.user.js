@@ -102,7 +102,7 @@ function appendLessThan10(x) {
 
 
 $.ajax({
-  url: 'http://api.randomuser.me/',
+    url: 'http://api.randomuser.me/?nat=us',
   dataType: 'json',
   success: function(data){
     var user = data.results[0].user;
@@ -172,7 +172,7 @@ if(coapp === true){
   $('#co-applicant-information').show();
 
     $.ajax({
-      url: 'http://api.randomuser.me/',
+        url: 'http://api.randomuser.me/?nat=us',
       dataType: 'json',
       success: function(coAppData){
         var coAppUser = coAppData.results[0].user;

@@ -122,7 +122,7 @@ var validAddress = addressObject[randomNumBetween(1, 51)][randomNumBetween(1, 3)
 var hasCoApp = hasCoApplicant();
 
 $.ajax({
-    url: 'http://api.randomuser.me/',
+    url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
     success: function (data) {
         var user = data.results[0].user;
@@ -157,7 +157,7 @@ $.ajax({
             $("#HasCoApplicant").val(true);
 
             $.ajax({
-                url: 'http://api.randomuser.me/',
+                url: 'http://api.randomuser.me/?nat=us',
                 dataType: 'json',
                 success: function (coAppData) {
                     var coAppUser = coAppData.results[0].user;
