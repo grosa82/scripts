@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Agent Application Auto Filler
 // @namespace    */Applicants/CreateApplicant*
-// @version      1.02
+// @version      1.1
 // @description  Automatically fills out an application for you.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               If you check the HasCoApplicant checkbox then Co-Applicants form items will be filled out automatically.
@@ -315,7 +315,7 @@ $("#BankAccount").change(function () {
 
     if (cardInfoReq) {
         $("#CardholderName").val(firstName + ' ' + lastName);
-        $("#CardNumber").val("4111111111111111");
+        $("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
         $("#ExpirationMonth").val(month);
         $("#ExpirationYear").val(year + 2);
     } else {
