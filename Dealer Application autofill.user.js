@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name         Dealer Application autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0
+// updateURL     https://github.com/emartinez1621/scripts/raw/master/Dealer%20Application%20autofill.user.js
 // @description  try to take over the world!
 // @author       Eduardo
 // @include      http://*/Dealers/Create*

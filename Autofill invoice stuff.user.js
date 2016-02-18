@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Autofill invoice stuff
 // @namespace    */DealerApp/ItemPricing*
-// @version      0.1
-// @description  Script to automatically fill in invoice fields after applying through a retailer
+// @version      0.5
+// @updateURL    https://github.com/emartinez1621/scripts/raw/master/Autofill%20invoice%20stuff.user.js
+// @description  Script to automatically fill in invoice fields after applying through a retailer (ONLY WORKS IN THE RETAILER PORTAL)
 // @author       Eduardo Martinez
 // @match        http://*/DealerApp/ItemPricing*
 // @match        http://*/Applicants/DealerDetails*

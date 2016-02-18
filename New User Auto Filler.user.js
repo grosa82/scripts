@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         New User Auto Filler
 // @namespace    */Users/Create*
-// @version      0.5
+// @version      1.0
 // @description  Automatically fills out information needed to create a new user
 // @author       Eduardo Martinez
 // @match        http://*/Users/Create*
+// @updateURL    https://github.com/emartinez1621/scripts/raw/master/New%20User%20Auto%20Filler.user.js
 // @grant        none
 // ==/UserScript==
 

@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Add Locations
 // @namespace    */DealerApp/DealerAppLocations*
-// @version      0.1
+// @version      1.0
 // @description  Autofill all the fields when adding a location on a dealer application
 // @author       You
 // @match        http://*/DealerApp/DealerAppLocations*
 // @exclude      https://dealers.crestfinancial.com*
 // @exclude      https://portal.crestfinancial.com*
+// @updateURl    https://github.com/emartinez1621/scripts/raw/master/Add%20Locations.user.js
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
