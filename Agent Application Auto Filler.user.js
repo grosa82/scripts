@@ -201,7 +201,7 @@ if (cardInfoReq) {
     $("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
     $("#CardholderName").val($("#FirstName").val() + ' ' + $("#LastName").val());
     $("#ExpirationMonth").val(appendLessThan10(randomNumBetween(1, 12)));
-    $("#ExpirationYear").val(randomNumBetween(2016, 2019));
+    $("#ExpirationYear").val(randomNumBetween(2017, 2019));
 } else {
     $("#CardholderName").val('');
     $("#CardNumber").val('');
@@ -286,7 +286,7 @@ $("#HasCoApplicant, #CoApplicant").change(function () { //agent
 //UPDATE BANK & CARD INFO BASED ON THEIR DYNAMIC REQUIREMENTS
 $("#BankAccount").change(function () {
     var month = appendLessThan10(randomNumBetween(1, 12));
-    var year = randomNumBetween(2016, 2019);
+    var year = randomNumBetween(2017, 2019);
 
     var firstName = $("#FirstName").val().toString();
     var lastName = $("#LastName").val().toString();
