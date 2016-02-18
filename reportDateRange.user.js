@@ -16,10 +16,6 @@
 
 // Your code here...
 
-var start = $("#BeginDate, #StartDate, #filterDateRangeStart, #startDate, [name = 'startDate']");
-var end = $("#EndDate, #filterDateRangeEnd, #endDate, #FundedDate, [name = 'endDate']");
-var month = $("#month");
-var year = $("#year");
 
 
 start.val('12/11/2013');
