@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Report Date Range Autofiller
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      1.0
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/reportDateRange.user.js
 // @description  Fill in the range of dates automatically on reports
 // @author       Eduardo Martinez
@@ -16,6 +16,10 @@
 
 // Your code here...
 
+var start = $("#BeginDate, #StartDate, #filterDateRangeStart, #startDate, [name = 'startDate']");
+var end = $("#EndDate, #filterDateRangeEnd, #endDate, #FundedDate, [name = 'endDate']");
+var month = $("#month");
+var year = $("#year");
 
 
 start.val('12/11/2013');
