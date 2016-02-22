@@ -125,7 +125,6 @@ var dobYear = randomNumBetween(year - 70, year - 21);
 var dobMonth = appendLessThan10(randomNumBetween(1, 12));
 var dobDay = appendLessThan10(randomNumBetween(1, 28)); //in case of Feb
 $("#DateOfBirth").val(dobMonth + "/" + dobDay + "/" + dobYear);
-$("#SocialSecurityNumber").val(randomSocial());
 $("#PhoneNumber").val(randomPhone());
 $("#FaxNumber").val(randomPhone());
 $("#City").val("Salt Lake City");

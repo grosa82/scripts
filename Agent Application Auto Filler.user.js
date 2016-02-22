@@ -117,7 +117,7 @@ var validAddress = addressObject[randomNumBetween(1, 51)][randomNumBetween(1, 3)
 var salesTax = confirm("Are you testing sales tax?");
 /* ----------------------------------------------- */
 
-alert("If you're on the agent portal, and a card is needed, you'll have to update the nunber yourself... sorry :/");
+
 $.ajax({
     url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
@@ -195,6 +195,10 @@ if (bankInfoReq) {
     $("#RoutingNumber").val('');
     $("#BankName").val('');
     $("#AccountOpenDate").val('');
+}
+
+if ($("#CardNumberEntry, #CardNumber").val() == "") {
+    $("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
 }
 
 if (cardInfoReq) {
