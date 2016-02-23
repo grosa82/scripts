@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Inital Payment
 // @namespace    */DealerApp/FirstPayment*
-// @version      1.0
+// @version      1.01
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Inital%20Payment.user.js
 // @description  autofill initial payment and first payment things
 // @author       You
@@ -30,6 +30,10 @@ function randomValidCC(digits) {
 
     return digits + checkdigit;
 };
+
+function randomNumBetween(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
 $('#name-on-card').val('Person McPerson');
 $('#card-number').val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
