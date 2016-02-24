@@ -128,7 +128,7 @@ $(document).ready(function(){
       $("#FirstName").val(firstName);
       $("#LastName").val(lastName);
       $("#EmailAddress").val(email);
-      $("#StreetLine1").val(streetLine1);
+      $("#StreetLine1, #Address").val(streetLine1);
       $('#PhoneNumber').val(randomPhone());  
       $('#FaxNumber').val(randomPhone());
       $('#OwnerHomePhone').val(randomPhone());
@@ -138,7 +138,7 @@ $(document).ready(function(){
       $('#UserName').val(username);
       $('#Owner, #ContactName').val(firstName + ' ' + lastName);
       $('#City,#OwnerCity').val(city);
-      $('#OwnerSocialSecurityNumber').val(randomSocial());
+      $('#OwnerSocialSecurityNumber, #SSN').val(randomSocial());
       $('#AccountNumber').val(bankAccount);  
       $('#OpenDate').val(randomDate());  
       $('#Website').val('www.website.com');
