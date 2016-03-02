@@ -124,7 +124,7 @@ var validAddress = addressObject[randomNumBetween(1, 51)][randomNumBetween(1, 3)
 /*$("#BeginDate, #EndDate").click(function () {
     window.location.replace('https://www.youtube.com/embed/LiaYDPRedWQ?autoplay=1');
 })*/
-//var salesTax = confirm("Are you testing sales tax?");
+var salesTax = confirm("Are you testing sales tax?");
 /* ----------------------------------------------- */
 
 
@@ -144,18 +144,18 @@ $.ajax({
         $("#LastName").val(lastName);
         $("#EmailAddress").val(email);
 
-        /*if (salesTax) {
+        if (salesTax) {
             $("#StreetLine1").val(validAddress.address);
             $("#City").val(validAddress.city);
             $("#StateID").val(validAddress.abbrev);
             $("#PostalCode").val(validAddress.zip);
-        }*/
-        //else {
-        $("#StreetLine1").val(streetLine1);
-        $("#City").val("Salt Lake City");
-        $("#StateID").val("UT");
-        $("#PostalCode").val(randomNumWithXDigits(5));
-        //};
+        }
+        else {
+            $("#StreetLine1").val(streetLine1);
+            $("#City").val("Salt Lake City");
+            $("#StateID").val("UT");
+            $("#PostalCode").val(randomNumWithXDigits(5));
+        };
 
         $("#CardholderName").val(firstName + ' ' + lastName);
     }
