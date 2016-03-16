@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         Add Locations
 // @namespace    */DealerApp/DealerAppLocations*
-// @version      1.01
+// @version      1.02
 // @description  Autofill all the fields when adding a location on a dealer application
-// @author       You
-// @match        http://*/DealerApp/DealerAppLocations*
-// @exclude      https://dealers.crestfinancial.com*
-// @exclude      https://portal.crestfinancial.com*
+// @author       Eduardo Martinez
+// @match        */DealerApp/DealerAppLocations*
+// @exclude      https://*
 // @updateURl    https://github.com/emartinez1621/scripts/raw/master/Add%20Locations.user.js
 // @grant        none
 // ==/UserScript==
@@ -24,11 +23,11 @@ $('#AddLocation').click(function() {
     areaCode += 100;
   }
   if(nextThree < 100){
-    nextThree += 100;   
+    nextThree += 100;
   }
   if(finalFour < 1000){
-    finalFour += 1000;   
-  }    
+    finalFour += 1000;
+  }
   return '('+ areaCode + ')' + '-' + nextThree + '-' + finalFour;
   }
 
@@ -36,7 +35,7 @@ $('#AddLocation').click(function() {
   function randomRetalerType(arr){
     return arr[Math.floor(Math.random() * arr.length)];
   }
- 
+
 
   $.ajax({
       url: 'http://api.randomuser.me/?nat=us',
@@ -61,15 +60,14 @@ $('#AddLocation').click(function() {
       $('#PostalCode').val('84081');
       $('#PhoneNumber').val(randomPhone());
       $('#FaxNumber').val(randomPhone());
-      $('#ContactName').val(firstName + '' + lastName);  
+      $('#ContactName').val(firstName + '' + lastName);
       $('#EmailAddress').val(email);
       $('#RoutingNumber').val('124001545');
-      $('#BankName').val('Chase');  
-      $('#AccountNumber').val(bankAccount);  
-  
+      $('#BankName').val('Chase');
+      $('#AccountNumber').val(bankAccount);
 
-        
+
+
     }
   });
 });
-

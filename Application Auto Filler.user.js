@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      1.03
-// @description  Automatically fills out an application for you with the option to fill out the Co-Applicant. 
-//               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible. 
+// @version      1.04
+// @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
+//               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
-//               
+//
 //               **ONLY USABLE IN THE NEW APPLICATION PAGE. NOT USABLE ON THE AGENT/RETAILER PORTAL APPLICATION.
-//               
-// @author       Carlos Cruz, David Cruz
-// @match        http://*/Applicants/CreateApplicant/*
+//
+// @author       Carlos Cruz, David Cruz, Eduardo Martinez
+// @include      */Applicants/CreateApplicant/*
+// @exclude      https://*
 // @grant        none
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Application%20Auto%20Filler.user.js
 // ==/UserScript==
@@ -118,6 +119,8 @@ var addressArray = '{"1" : [{"abbrev" : "AK", "zip" : "99507", "city" : "Anchora
 var addressObject = JSON.parse(addressArray);
 var validAddress = addressObject[randomNumBetween(1, 51)][randomNumBetween(1, 3)];
 
+
+
 /* ----------------------------------------------- */
 var hasCoApp = hasCoApplicant();
 
@@ -225,18 +228,11 @@ if (bankInfoReq) {
     $("#AccountOpenDate").val('');
 }
 
-if (cardInfoReq) {
-    $("#CardholderName").val($("#FirstName").val() + ' ' + $("#LastName").val());
-    $("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
-    $("#ExpirationMonth").val(appendLessThan10(randomNumBetween(1, 12)));
-    $("#ExpirationYear").val(randomNumBetween(2017, 2019));
+$("#CardholderName").val($("#FirstName").val() + ' ' + $("#LastName").val());
+$("#CardNumberEntry, #CardNumber").val(randomValidCC("4" + randomNumBetween(10000000000000, 99999999999999).toString()));
+$("#ExpirationMonth").val(month);
+$("#ExpirationYear").val(year + 2);
 
-} else {
-    $("#CardholderName").val('');
-    $("#CardNumberEntry").val('');
-    $("#ExpirationMonth").val('');
-    $("#ExpirationYear").val('');
-}
 
 
 // REFERENCES INFO

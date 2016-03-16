@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Dealer Application autofill
 // @namespace    http://tampermonkey.net/
-// @version      1.02
+// @version      1.03
 // updateURL     https://github.com/emartinez1621/scripts/raw/master/Dealer%20Application%20autofill.user.js
 // @description  try to take over the world!
-// @author       Eduardo
-// @include      http://*/Dealers/Create*
-// @include      http://*/DealerApply*
-// @include      http://*DealerApp/DealerCreateUser*
+// @author       Eduardo Martinez
+// @include      */Dealers/Create*
+// @include      */DealerApply*
+// @include      *DealerApp/DealerCreateUser*
+// @exclude      https://*
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
@@ -21,7 +22,7 @@ $(document).ready(function(){
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
- 
+
   function randomPhone(){
   var areaCode = Math.floor(Math.random() * 1000);
   var nextThree = Math.floor(Math.random() * 1000);
@@ -30,14 +31,14 @@ $(document).ready(function(){
     areaCode += 100;
   }
   if(nextThree < 100){
-    nextThree += 100;   
+    nextThree += 100;
   }
   if(finalFour < 1000){
-    finalFour += 1000;   
-  }    
+    finalFour += 1000;
+  }
   return '('+ areaCode + ')' + '-' + nextThree + '-' + finalFour;
   }
-    
+
   function capitalizeFirstLetterOfEachWord(string) {
 
     var array = string.split(/(\s+)/),
@@ -57,7 +58,7 @@ $(document).ready(function(){
 
     return array.join("");
   }
-  
+
   function randomZip(){
   var zip = Math.floor(Math.random() * 100000);
   if(zip < 10000){
@@ -66,7 +67,7 @@ $(document).ready(function(){
   return zip;
   }
 
-    
+
   function randomSocial(){
   var firstThree = Math.floor(Math.random() * 1000);
   var nextTwo = Math.floor(Math.random() * 100);
@@ -75,11 +76,11 @@ $(document).ready(function(){
     firstThree += 100;
   }
   if(nextTwo < 10){
-    nextTwo += 10;   
+    nextTwo += 10;
   }
   if(lastFour < 1000){
-    lastFour += 1000;   
-  }    
+    lastFour += 1000;
+  }
   return firstThree + '-' + nextTwo + '-' + lastFour;
   }
 
@@ -103,11 +104,11 @@ $(document).ready(function(){
   }
 
   var retailerType = ['Furniture', 'Jewelers', 'Emporium', 'Audio', 'Electronics'];
-    
+
   function randomRetalerType(arr){
     return arr[Math.floor(Math.random() * arr.length)];
   }
- 
+
   $.ajax({
       url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
@@ -129,29 +130,32 @@ $(document).ready(function(){
       $("#LastName").val(lastName);
       $("#EmailAddress").val(email);
       $("#StreetLine1, #Address").val(streetLine1);
-      $('#PhoneNumber').val(randomPhone());  
+      $('#PhoneNumber').val(randomPhone());
       $('#FaxNumber').val(randomPhone());
-      $('#OwnerHomePhone').val(randomPhone());
+      $('#OwnerHomePhone, #PrimaryPhone').val(randomPhone());
       $('#Name, #BusinessName').val(retailerName);
       $("#CardholderName").val(firstName + ' ' + lastName);
       $('#PostalCode, #OwnerZip').val(randomZip());
       $('#UserName').val(username);
       $('#Owner, #ContactName').val(firstName + ' ' + lastName);
       $('#City,#OwnerCity').val(city);
-      $('#OwnerSocialSecurityNumber, #SSN').val(randomSocial());
-      $('#AccountNumber').val(bankAccount);  
-      $('#OpenDate').val(randomDate());  
+      $('#OwnerSocialSecurityNumber, #SSN, #SocialSecurityNumber').val(randomSocial());
+      $('#AccountNumber').val(bankAccount);
+      $('#OpenDate').val(randomDate());
       $('#Website').val('www.website.com');
       $('#Password, #ConfirmPassword').val('test123!');
       $('#BankName').val('Chase');
-      $('#RoutingNumber').val('124001545');  
+      $('#RoutingNumber').val('124001545');
       $('#OwnerStreet1').val('1234 Place Way');
-      $('#OwnerDateOfBirth').val('10/01/1985');
-      $('#DealerRepID').val('1179');  
-      $('#ReferralCodeID').val('2'); 
+      $('#OwnerDateOfBirth, #DateOfBirth').val('10/01/1985');
+      $('#DealerRepID').val('1191');
+      $('#ReferralCodeID').val('2');
       $('#StateID, #OwnerStateID').val('AK');
-      $('#NumOfLocations').val('1')  
+      $('#NumOfLocations').val('1')
       $('#checkbox_user_type_id_Dealer').prop('checked', true);
+      $('#EmployerName').val('MacGronalds');
+      $('#HireDate').val('10/01/2012');
+      $('#MonthlyIncome').val('5000');
     }
   })
 });

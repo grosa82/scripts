@@ -1,15 +1,17 @@
 // ==UserScript==
 // @name         Report Date Range Autofiller
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.01
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/reportDateRange.user.js
 // @description  Fill in the range of dates automatically on reports
 // @author       Eduardo Martinez
-// @include      http://*/RDLCReports/*
-// @include      http://*/Repor*
-// @include      http://*/DealerLocator*
-// @exclude      http://*/Report/WellsFargoReturns*
-// @exclude      http://*/Reports/WellsFargoReturns*
+// @include      */RDLCReports/*
+// @include      */Repor*
+// @include      */DealerLocator*
+// @exclude      */Report/WellsFargoReturns*
+// @exclude      */Reports/WellsFargoReturns*
+// @exclude      */RDLCReports/CollectionCommissionBucketReport*
+// @exclude      https://*
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
@@ -22,8 +24,9 @@ var month = $("#month");
 var year = $("#year");
 
 
-start.val('12/11/2013');
-end.val('12/11/2015');
+
+start.val("01/01/2015");
+end.val("03/16/2016");
 
 $("#category").val("10");
 $("#zipCode").val("28678");
@@ -44,5 +47,3 @@ if (!$('input')) {
         $("[name = 'year']").val('2015');
     };
 }
-
-
