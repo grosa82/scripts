@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Agent Application Auto Filler
 // @namespace    */Applicants/CreateApplicant*
-// @version      1.10
+// @version      2.010
 // @description  Automatically fills out an application for you.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               If you check the HasCoApplicant checkbox then Co-Applicants form items will be filled out automatically.
@@ -10,7 +10,7 @@
 //               **ONLY USABLE IN THE AGENT PORTAL APPLICATION.
 //
 // @author       Carlos Cruz, David Cruz, Eduardo Martinez
-// @match        */Applicants/CreateApplicant
+// @include        */Applicants/CreateApplicant
 // @exclude      https://*
 // @grant        none
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Agent%20Application%20Auto%20Filler.user.js

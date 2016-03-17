@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Report Date Range Autofiller
 // @namespace    http://tampermonkey.net/
-// @version      1.01
+// @version      2.001
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/reportDateRange.user.js
 // @description  Fill in the range of dates automatically on reports
 // @author       Eduardo Martinez

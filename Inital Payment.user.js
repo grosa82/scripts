@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Inital Payment
 // @namespace    */DealerApp/FirstPayment*
-// @version      1.02
+// @version      2.002
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Inital%20Payment.user.js
 // @description  autofill initial payment and first payment things
 // @author       Eduardo Martinez

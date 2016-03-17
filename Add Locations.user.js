@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Add Locations
 // @namespace    */DealerApp/DealerAppLocations*
-// @version      1.02
+// @version      2.002
 // @description  Autofill all the fields when adding a location on a dealer application
 // @author       Eduardo Martinez
-// @match        */DealerApp/DealerAppLocations*
+// @include        */DealerApp/DealerAppLocations*
 // @exclude      https://*
 // @updateURl    https://github.com/emartinez1621/scripts/raw/master/Add%20Locations.user.js
 // @grant        none
