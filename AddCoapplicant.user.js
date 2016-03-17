@@ -5,6 +5,7 @@
 // @description  Autofill fields when creating a coapplicant on the retailer and agent portal
 // @author       Eduardo Martinez
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/AddCoapplicant.user.js
+// @downloadURL  https://raw.githubusercontent.com/emartinez1621/scripts/master/AddCoapplicant.user.js
 // @match        */Applicants/CreateCoApplicant/*
 // @match        */Dealers/CreateCoApplicant/*
 // @exclude      https://*
