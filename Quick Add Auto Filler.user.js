@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quick Add Auto Filler
 // @namespace    */Applicants/CreateApplicant*
-// @version      2.1
+// @version      2.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
 //
