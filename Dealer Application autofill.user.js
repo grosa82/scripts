@@ -113,7 +113,7 @@ $(document).ready(function(){
       url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
     success: function(data){
-      var user = data.results[0].user;
+      var user = data.results[0];
       var firstName = capitalizeFirstLetter(user.name.first);
       var lastName = capitalizeFirstLetter(user.name.last);
       var generatedEmail = user.email.replace(/ /g, "_");

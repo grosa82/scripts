@@ -110,7 +110,7 @@ $.ajax({
     url: 'http://api.randomuser.me/?nat=us',
   dataType: 'json',
   success: function(data){
-    var user = data.results[0].user;
+    var user = data.results[0];
     var firstName = capitalizeFirstLetter(user.name.first);
     var lastName = capitalizeFirstLetter(user.name.last);
     var generatedEmail = user.email.replace(/ /g, "_");
@@ -192,7 +192,7 @@ if(coapp === true){
         url: 'http://api.randomuser.me/?nat=us',
       dataType: 'json',
       success: function(coAppData){
-        var coAppUser = coAppData.results[0].user;
+        var coAppUser = coAppData.results[0];
         var coAppFirstName = capitalizeFirstLetter(coAppUser.name.first);
         var coAppLastName = capitalizeFirstLetter(coAppUser.name.last);
         var coAppGeneratedEmail = coAppUser.email.replace(/ /g, "_");

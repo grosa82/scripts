@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      2.004
+// @version      2.01
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -128,7 +128,7 @@ $.ajax({
     url: 'http://api.randomuser.me/?nat=us',
     dataType: 'json',
     success: function (data) {
-        var user = data.results[0].user;
+        var user = data.results[0];
         var firstName = capitalizeFirstLetter(user.name.first);
         var lastName = capitalizeFirstLetter(user.name.last);
         var generatedEmail = user.email.replace(/ /g, "_");
@@ -163,7 +163,7 @@ $.ajax({
                 url: 'http://api.randomuser.me/?nat=us',
                 dataType: 'json',
                 success: function (coAppData) {
-                    var coAppUser = coAppData.results[0].user;
+                    var coAppUser = coAppData.results[0];
                     var coAppFirstName = capitalizeFirstLetter(coAppUser.name.first);
                     var coAppLastName = capitalizeFirstLetter(coAppUser.name.last);
                     var coAppGeneratedEmail = coAppUser.email.replace(/ /g, "_");
