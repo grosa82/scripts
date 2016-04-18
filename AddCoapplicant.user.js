@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Add Coapplicant
 // @namespace    */Applicants/CreateCoApplicant/*
-// @version      1.0
+// @version      1.5
 // @description  Automatically fills in fields to create coapplicant
 // @author       Eduardo Martinez
 // @include      */Applicants/CreateCoApplicant/*
 // @exclude      https://*
+// @updateURL    https://raw.githubusercontent.com/emartinez1621/scripts/master/AddCoapplicant.user.js
 // @grant        none
 // ==/UserScript==
 
