@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Retailer Add Locations
 // @namespace    */DealerApp/DealerAppLocations*
-// @version      3.5
-// @description  Autofill all the fields when adding a location on a dealer application
+// @version      4.5
+// @description  Autofill all the fields when adding a location on a dealer application through the login page. 
 // @author       Eduardo Martinez
 // @include        */DealerApp/DealerAppLocations*
 // @exclude      https://*

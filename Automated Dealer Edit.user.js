@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Automated Dealer Edit
 // @namespace    */Dealers/Edit/*
-// @version      2.001
+// @version      3.0
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Automated%20Dealer%20Edit.user.js
 // @description  Automatically add some of the most common permissions and finance plans for a new, inactive retailer. When asked if you want a demo retailer, "OK" means "Yes".
 // @author       Eduardo Martinez

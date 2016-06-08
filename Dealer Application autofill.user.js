@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Dealer Application autofill
 // @namespace    http://tampermonkey.net/
-// @version      3.5
+// @version      4.5
 // updateURL     https://github.com/emartinez1621/scripts/raw/master/Dealer%20Application%20autofill.user.js
-// @description  try to take over the world!
+// @description  This script is used to autofill all the fields when creating a new retailer. Works in the agent portal, and login page.
+//               It will even handle creating a new user when creating a retailer through the login page. 
 // @author       Eduardo Martinez
-// @include      */Dealers/Create*
+// @include      */Dealers/Create?*
 // @include      */DealerApply*
 // @include      *DealerApp/DealerCreateUser*
 // @exclude      https://*
