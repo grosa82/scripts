@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      4.0
+// @version      4.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -118,82 +118,83 @@ function randomValidCC(digits) {
 var salesTax = confirm("Are you testing sales tax?");
 
 function xmlRequest(){
-	var zpid = randomNumBetween(11111111,99999999);
-	GM_xmlhttpRequest({
-		method: "GET",
-		url: "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=" + zpid + "&count=1",
-		onload: function(response) {
-			var responseXML = null;
-			// Inject responseXML into existing Object (only appropriate for XML content).
-			if (!response.responseXML) {
-				responseXML = new DOMParser()
-					.parseFromString(response.responseText, "text/xml");
-			}
-			var xmlDoc = $.parseXML(response.responseText);
-			var $xml = $(xmlDoc);
-			var $text = $xml.find("text");
-			var innerText = $text[0].innerHTML;
-			if(innerText === "Request successfully processed"){
-				console.log("this works!");
-				var $street = $xml.find("street");
-				var $city = $xml.find("city");
-				var $state = $xml.find("state");
-				var $zipcode = $xml.find("zipcode");
+    var zpid = randomNumBetween(11111111,99999999);
+    GM_xmlhttpRequest({
+        method: "GET",
+        url: "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=" + zpid + "&count=1",
+        onload: function(response) {
+            var responseXML = null;
+            // Inject responseXML into existing Object (only appropriate for XML content).
+            if (!response.responseXML) {
+                responseXML = new DOMParser()
+                    .parseFromString(response.responseText, "text/xml");
+            }
+            var xmlDoc = $.parseXML(response.responseText);
+            var $xml = $(xmlDoc);
+            var $text = $xml.find("text");
+            var innerText = $text[0].innerHTML;
+            if(innerText === "Request successfully processed"){
+                console.log("this works!");
+                var $street = $xml.find("street");
+                var $city = $xml.find("city");
+                var $state = $xml.find("state");
+                var $zipcode = $xml.find("zipcode");
 
-				$("#StreetLine1").val($street[0].innerHTML);
-				$("#City").val($city[0].innerHTML);
-				$("#StateID").val($state[0].innerHTML);
-				$("#PostalCode").val($zipcode[0].innerHTML);
+                $("#StreetLine1").val($street[0].innerHTML);
+                $("#City").val($city[0].innerHTML);
+                $("#StateID").val($state[0].innerHTML);
+                $("#PostalCode").val($zipcode[0].innerHTML);
 
-				console.log([
-					response.status,
-					response.statusText,
-					response.readyState,
-					response.responseHeaders,
-					response.responseText,
-					response.finalUrl,
-					responseXML
-				].join("\n"));
-			}
-			else{
-				console.log("wtf");
-				xmlRequest();
-			}
-		}
-	});
+                console.log([
+                    response.status,
+                    response.statusText,
+                    response.readyState,
+                    response.responseHeaders,
+                    response.responseText,
+                    response.finalUrl,
+                    responseXML
+                ].join("\n"));
+            }
+            else{
+                console.log("wtf");
+                xmlRequest();
+            }
+        }
+    });
 }
 
+var hasCoApp = hasCoApplicant();
 
 /* ----------------------------------------------- */
 
 
 $.ajax({
-	url: 'http://api.randomuser.me/?nat=us',
-	dataType: 'json',
-	success: function(data){
-		var user = data.results[0];
-		var firstName = capitalizeFirstLetter(user.name.first);
-		var lastName = capitalizeFirstLetter(user.name.last);
-		var generatedEmail = user.email.replace(/ /g, "_");
-		var email = generatedEmail.replace("@example", (randomNumWithXDigits(3) + "@gmail"));
-		var address = user.location.street;
-		var streetLine1 = capitalizeFirstLetterOfEachWord(address);
+    url: 'http://api.randomuser.me/?nat=us',
+    dataType: 'json',
+    success: function(data){
+        var user = data.results[0];
+        var firstName = capitalizeFirstLetter(user.name.first);
+        var lastName = capitalizeFirstLetter(user.name.last);
+        var generatedEmail = user.email.replace(/ /g, "_");
+        var email = generatedEmail.replace("@example", (randomNumWithXDigits(3) + "@gmail"));
+        var address = user.location.street;
+        var streetLine1 = capitalizeFirstLetterOfEachWord(address);
 
-		$("#FirstName").val(firstName);
-		$("#LastName").val(lastName);
-		$("#EmailAddress").val(email);
+        $("#FirstName").val(firstName);
+        $("#LastName").val(lastName);
+        $("#EmailAddress").val(email);
 
-		if(salesTax){
-			xmlRequest();
-		}
-		else{
-			$("#StreetLine1").val(streetLine1);
-			$("#City").val("Salt Lake City");
-			$("#StateID").val("UT");
-			$("#PostalCode").val(randomNumWithXDigits(5));
-		}
+        if(salesTax){
+            xmlRequest();
+        }
+        else{
+            $("#StreetLine1").val(streetLine1);
+            $("#City").val("Salt Lake City");
+            $("#StateID").val("UT");
+            $("#PostalCode").val(randomNumWithXDigits(5));
+        }
 
-		$("#CardholderName").val(firstName + ' ' + lastName);
+        $("#CardholderName").val(firstName + ' ' + lastName);
 
         if (hasCoApp) {
             $('input[id=CoApplicant]').prop('checked', true).change();

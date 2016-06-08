@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         New User Auto Filler
 // @namespace    */Users/Create*
-// @version      3.0
+// @version      3.5
 // @description  Automatically fills out information needed to create a new user
 // @author       Eduardo Martinez
 // @include        */Users/Create*
@@ -104,7 +104,7 @@ $.ajax({
         var email = generatedEmail.replace("@example", (randomNumWithXDigits(3) + "@gmail"));
         var address = user.location.street;
         var streetLine1 = capitalizeFirstLetterOfEachWord(address);
-        var username = user.username;
+        var username = user.login.username;
 
         $("#FirstName").val(firstName);
         $("#LastName").val(lastName);
@@ -131,4 +131,5 @@ $("#FaxNumber").val(randomPhone());
 $("#City").val("Salt Lake City");
 $("#StateID").val("UT");
 $("#PostalCode").val(randomNumWithXDigits(5));
-$("#Password, #ConfirmPassword").val("test123!")
+$("#Password, #ConfirmPassword").val("test123!");
+$("#SocialSecurityNumber").val(randomSocial());

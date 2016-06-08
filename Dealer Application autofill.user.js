@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dealer Application autofill
 // @namespace    http://tampermonkey.net/
-// @version      3.0
+// @version      3.5
 // updateURL     https://github.com/emartinez1621/scripts/raw/master/Dealer%20Application%20autofill.user.js
 // @description  try to take over the world!
 // @author       Eduardo Martinez
@@ -93,10 +93,10 @@ $(document).ready(function(){
     dd = rand+dd;
     mm = rand+mm;
     yyyy = yyyy-rand;
-    if(dd>28)	{dd = 28;}
+    if(dd>28) {dd = 28;}
     if(mm>10) {mm = 8;}
-    if(dd<10){dd='0'+dd}
-    if(mm<10){mm='0'+mm}
+    if(dd<10){dd='0'+dd};
+    if(mm<10){mm='0'+mm};
     var randDate=mm+"/"+dd+"/"+yyyy;
     {
       return randDate;
@@ -122,7 +122,7 @@ $(document).ready(function(){
       var streetLine1 = capitalizeFirstLetterOfEachWord(address);
       var city = capitalizeFirstLetter(user.location.city);
       var retailerName = lastName + ' '+ city + ' ' + randomRetalerType(retailerType);
-      var username = user.username;
+      var username = user.login.username;
       var bankAccount = Math.floor(Math.random() * 999999999);
 
 
@@ -157,5 +157,5 @@ $(document).ready(function(){
       $('#HireDate').val('10/01/2012');
       $('#MonthlyIncome').val('5000');
     }
-  })
+  });
 });
