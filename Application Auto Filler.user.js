@@ -9,7 +9,7 @@
 //               **USABLE IN ALL APPLICATION PAGES (/APPLY, RETAILER PORTAL, AGENT PORTAL, QUICK ADD)
 // @author       Carlos Cruz, David Cruz, Eduardo Martinez
 // @include      */Applicants/Create*
-// @exclude      https://*
+
 // @grant        GM_xmlhttpRequest
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Application%20Auto%20Filler.user.js
 // ==/UserScript==
@@ -201,7 +201,6 @@ $.ajax({
     }
 });
 
-// VARIABLES
 var today = new Date();
 var month = appendLessThan10(today.getMonth() + 1);
 var year = today.getFullYear();
@@ -217,6 +216,7 @@ $("#SocialSecurityNumber").val(randomSocial());
 $("#PrimaryPhone, #HomePhone").val(randomPhone());
 $("#SecondaryPhone").val(randomPhone());
 $("#IsSecondaryPhoneCell").val(true);
+
 
 $("#MonthlyIncome").val(randomNumBetween(2, 15) * 1000);
 
@@ -239,10 +239,7 @@ if(windowUrlPath.includes(notQuickAdd)){
         $("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
         $("#RoutingNumber").val("122000030");
         $("#BankName").val("BANK OF AMERICA NA");
-        var openMonth = appendLessThan10(randomNumBetween(1, 5));
-        var openYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
-        $("#AccountOpenDate").val(openMonth + "/" + openYear);
-
+        $("#YearsAccountOpen").val("2");
     } else {
         $("#AccountNumber").val('');
         $("#RoutingNumber").val('');
@@ -272,12 +269,15 @@ $("#Reference1PhoneNumber").val(randomPhone());
 $("#Reference2Name").val("Kohina Ichimatsu");
 $("#Reference2PhoneNumber").val(randomPhone());
 
+
+
 //EMPLOYER INFO
 $("#EmployerName").val("Run Run Company");
 $("#EmployerPhone").val(randomPhone());
 var hireDay = appendLessThan10(randomNumBetween(1, 28));
 var hireMonth = appendLessThan10(randomNumBetween(1, 12));
 var hireYear = appendLessThan10(randomNumBetween(year - 20, year - 1));
+$("#YearsAtJob").val("2");
 $("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 $("#LastPayDate").val(month + "/01/" + year);
 $("#NextPayDate").val(month + "/15/" + year);
