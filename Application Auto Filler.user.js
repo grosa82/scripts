@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      6.5
+// @version      7.0
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -120,13 +120,16 @@ function randomValidCC(digits) {
     return digits + checkdigit;
 }
 
+var zpid = randomNumBetween(11111111,99999999);
+var salesUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1feg75wwnwr_4dboj&zpid=" + zpid + "&count=1";
+var testUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=" + zpid + "&count=1";
+
 var salesTax = confirm("Are you testing sales tax?");
 
-function xmlRequest(){
-    var zpid = randomNumBetween(11111111,99999999);
+function xmlRequest(url){
     GM_xmlhttpRequest({
         method: "GET",
-        url: "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=" + zpid + "&count=1",
+        url: url,
         onload: function(response) {
             var responseXML = null;
             // Inject responseXML into existing Object (only appropriate for XML content).
@@ -162,7 +165,7 @@ function xmlRequest(){
             }
             else{
                 console.log("wtf");
-                xmlRequest();
+                xmlRequest(url);
             }
         }
     });
@@ -172,7 +175,7 @@ function xmlRequest(){
 
 
 $.ajax({
-    url: 'http://api.randomuser.me/?nat=us',
+    url: 'https://randomuser.me/api/?nat=us',
     dataType: 'json',
     success: function(data){
         var user = data.results[0];
@@ -186,11 +189,19 @@ $.ajax({
         $("#FirstName").val(firstName);
         $("#LastName").val(lastName);
         $("#EmailAddress").val(email);
+        $("#EmailAddressConfirm").val(email);
 
-        if(salesTax){
-            xmlRequest();
+        if(salesTax && window.location.protocol == "https:"){
+            xmlRequest(salesUrl);
+            console.log("using the sales url");
         }
-        else{
+        else if(salesTax && window.location.protocol != "https:")
+        {
+            xmlRequest(testUrl);
+            console.log("using the test url");
+        }
+        else
+        {
             $("#StreetLine1").val(streetLine1);
             $("#City").val("Salt Lake City");
             $("#StateID").val("UT");
@@ -217,8 +228,15 @@ $("#PrimaryPhone, #HomePhone").val(randomPhone());
 $("#SecondaryPhone").val(randomPhone());
 $("#IsSecondaryPhoneCell").val(true);
 
+if(window.location.protocol == "https:")
+{
+    $("#MonthlyIncome").val(10000);
+}
+else
+{
+    $("#MonthlyIncome").val(randomNumBetween(2, 15) * 1000);
+}
 
-$("#MonthlyIncome").val(randomNumBetween(2, 15) * 1000);
 
 // BANK & CARD INFO
 // IS USED EVERYWHERE EXCEPT THE QUICK ADD PAGE
