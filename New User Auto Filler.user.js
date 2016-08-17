@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name         New User Auto Filler
 // @namespace    */Users/Create*
-// @version      3.0
-// @description  Automatically fills out information needed to create a new user
+// @version      4.0
+// @description  Automatically fills out information needed to create a new user. Works when creating a user through the users tab, 
+//               and when creating a retailer user or a salesman through the retailer details page.
 // @author       Eduardo Martinez
-// @include        */Users/Create*
+// @include      */Users/Create*
+// @include      */Dealers/CreateUser/*
+// @include      */Dealers/CreateSalesman*
 // @exclude      https://*
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/New%20User%20Auto%20Filler.user.js
 // @grant        none
 // ==/UserScript==
-
-alert("You'll have to assign the user roles yourself.");
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -104,12 +105,12 @@ $.ajax({
         var email = generatedEmail.replace("@example", (randomNumWithXDigits(3) + "@gmail"));
         var address = user.location.street;
         var streetLine1 = capitalizeFirstLetterOfEachWord(address);
-        var username = user.username;
+        var username = user.login.username;
 
         $("#FirstName").val(firstName);
         $("#LastName").val(lastName);
         $("#EmailAddress").val(email);
-        $("#StreetLine1").val(streetLine1);
+        $("#StreetLine1, #Address").val(streetLine1);
         $("#UserName").val(username);
 
 
@@ -120,6 +121,15 @@ $.ajax({
 var today = new Date();
 var month = appendLessThan10(today.getMonth() + 1);
 var year = today.getFullYear();
+var windowLoc = $(location).attr("pathname");
+
+if(windowLoc.includes("/Users/Create")){
+    alert("You'll have to assign the user roles yourself.");
+}
+else
+{
+    $("#checkbox_user_type_id_Dealer").prop("checked",true);
+}
 
 // APPLICANT INFO
 var dobYear = randomNumBetween(year - 70, year - 21);
@@ -131,4 +141,8 @@ $("#FaxNumber").val(randomPhone());
 $("#City").val("Salt Lake City");
 $("#StateID").val("UT");
 $("#PostalCode").val(randomNumWithXDigits(5));
-$("#Password, #ConfirmPassword").val("test123!")
+$("#Password, #ConfirmPassword").val("test123!");
+$("#SocialSecurityNumber, #SSN").val(randomSocial());
+$("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
+$("#RoutingNumber").val("122000030");
+$("#BankName").val("BANK OF AMERICA NA");
