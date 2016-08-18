@@ -195,7 +195,7 @@ function xmlRequest(url){
     });
 }
 
-if(window.location.protocol == "https:" && authorizedUsers.includes(getUsername()))
+if(window.location.protocol == "https:" && authorizedUsers.includes(getUsername()) || authorizedUsers.includes(getUsername()))
 {
     var salesTax = confirm("Are you testing sales tax?");
     var hasCoApp = confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
