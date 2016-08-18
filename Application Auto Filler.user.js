@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      8.0
+// @version      8.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -195,7 +195,7 @@ function xmlRequest(url){
     });
 }
 
-if(window.location.protocol == "https:" && authorizedUsers.includes(getUsername()) || authorizedUsers.includes(getUsername()))
+if(window.location.protocol == "https:" && authorizedUsers.includes(getUsername()) || window.location.protocol != "https:")
 {
     var salesTax = confirm("Are you testing sales tax?");
     var hasCoApp = confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
