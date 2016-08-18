@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      7.0
+// @version      7.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -16,7 +16,7 @@
 
 var devTeam = ["emartinez", "jnalwalker", "sdahl", "jcowley", "mbullock", "mmcentire", "dolsen", "tolsen", "ccruz", "dcruz", "dtruzinski", "nbayles", "nirvin", "gstipe", "lwright", "pblount", "pvisser", "ksherpherd", "jhomer", "bpeterson", "mratto", "rrollins", "tlarisch", "rgoncalves", "cloiseau", "colsen2", "adhomer", "jmadsen", "bblomquist", "greynolds"];
 
-var salesTrainingTeam = ["hplayer", "bgraham", "bmounteer", "mroller", "acedillo", "bcarr", "bcarradmin"];
+var salesTrainingTeam = ["hplayer", "bgraham", "bmounteer", "mroller", "acedillo", "bcarr", "bcarradmin", "Sales Team Demo"];
 
 var authorizedUsers = devTeam.concat(salesTrainingTeam);
 
@@ -29,10 +29,17 @@ var windowUrlPath = $(location).attr("pathname");
 var notQuickAdd = "/Applicants/CreateApplicant";
 
 function getUsername() {
-    var usernameField = $("#status").text();
-    var welcome = usernameField.indexOf(" [");
-    var username = usernameField.substring(8,welcome-1);
-    return username.substring(25);
+    if($("#status").is(":visible"))
+    {
+        var usernameField = $("#status").text();
+        var welcome = usernameField.indexOf(" [");
+        var username = usernameField.substring(8,welcome-1);
+        return username.substring(25);
+    }
+    else
+    {
+        return $("#retailer-name").text();
+    }
 }
 
 function capitalizeFirstLetter(string) {
@@ -469,3 +476,4 @@ else
         emailjs.send("gmail", "tamper_monkey_authorized_user_request", {"username": getUsername(), "tampermonkey": "Application Auto Filler"});
         alert("An email has been sent with your request!");
     }
+}
