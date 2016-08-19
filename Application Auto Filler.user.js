@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      8.5
+// @version      10.0
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -10,23 +10,45 @@
 // @author       Carlos Cruz, David Cruz, Eduardo Martinez
 // @include      */Applicants/Create*
 // @require      https://cdn.emailjs.com/dist/email.min.js
+// @require      https://www.gstatic.com/firebasejs/3.3.0/firebase.js
 // @grant        GM_xmlhttpRequest
 // @updateURL    https://github.com/emartinez1621/scripts/raw/master/Application%20Auto%20Filler.user.js
 // ==/UserScript==
+var config = {
+    apiKey: "AIzaSyBzfpCQCoWRjxWkeO6H1E7vh4A5W9ebdsg",
+    authDomain: "tampermonkeyauthedusers.firebaseapp.com",
+    databaseURL: "https://tampermonkeyauthedusers.firebaseio.com",
+    storageBucket: "",
+};
+firebase.initializeApp(config);
 
-var devTeam = ["emartinez", "jnalwalker", "sdahl", "jcowley", "mbullock", "mmcentire", "dolsen", "tolsen", "ccruz", "dcruz", "dtruzinski", "nbayles", "nirvin", "gstipe", "lwright", "pblount", "pvisser", "ksherpherd", "jhomer", "bpeterson", "mratto", "rrollins", "tlarisch", "rgoncalves", "cloiseau", "colsen2", "adhomer", "jmadsen", "bblomquist", "greynolds"];
+function getDevTeam(){
+    return $.ajax({
+        url: "https://tampermonkeyauthedusers.firebaseio.com/authUsers/devTeam.json?print=pretty",
+        dataType: 'json',
+        async: !1,
+        success: function(response) {
+            var data = response;
+        }
+    });
+}
 
-var salesTrainingTeam = ["hplayer", "bgraham", "bmounteer", "mroller", "acedillo", "bcarr", "bcarradmin", "Sales Team Demo"];
+function getSalesTrainingTeam(){
+    return $.ajax({
+        url: "https://tampermonkeyauthedusers.firebaseio.com/authUsers/salesTrainingTeam.json?print=pretty",
+        dataType: 'json',
+        async: !1,
+        success: function(response) {
+            var data = response;
+        }
+    });
+}
 
-var authorizedUsers = devTeam.concat(salesTrainingTeam);
-
-var salesUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1feg75wwnwr_4dboj&zpid=";
-var testUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=";
-var today = new Date();
-var month = appendLessThan10(today.getMonth() + 1);
-var year = today.getFullYear();
-var windowUrlPath = $(location).attr("pathname");
-var notQuickAdd = "/Applicants/CreateApplicant";
+var devArray = getDevTeam().responseText;
+var sttArray = getSalesTrainingTeam().responseText;
+var salesTrainingTeam = sttArray.substring(1);
+var devTeam = devArray.substring(0, devArray.length - 2);
+var authedUsers = devTeam.concat(salesTrainingTeam);
 
 function getUsername() {
     if($("#status").is(":visible"))
@@ -41,6 +63,26 @@ function getUsername() {
         return $("#retailer-name").text();
     }
 }
+
+
+function checkAuth(username){
+    if(authedUsers.includes(username)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+var salesUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1feg75wwnwr_4dboj&zpid=";
+var testUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=";
+var today = new Date();
+var month = appendLessThan10(today.getMonth() + 1);
+var year = today.getFullYear();
+var windowUrlPath = $(location).attr("pathname");
+var notQuickAdd = "/Applicants/CreateApplicant";
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -195,7 +237,7 @@ function xmlRequest(url){
     });
 }
 
-if(window.location.protocol == "https:" && authorizedUsers.includes(getUsername()) || window.location.protocol != "https:")
+if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.location.protocol != "https:")
 {
     var salesTax = confirm("Are you testing sales tax?");
     var hasCoApp = confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
