@@ -78,7 +78,7 @@ function checkAuth(username){
 var salesUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1feg75wwnwr_4dboj&zpid=";
 var testUrl = "http://www.zillow.com/webservice/GetComps.htm?zws-id=X1-ZWz1f90bdgck5n_4rdd9&zpid=";
 var today = new Date();
-var month = appendLessThan10(today.getMonth() + 1);
+var month = appendLessThan10(today.getMonth() + 2);
 var year = today.getFullYear();
 var windowUrlPath = $(location).attr("pathname");
 var notQuickAdd = "/Applicants/CreateApplicant";
@@ -380,7 +380,7 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
     $("#YearsAtJob").val("2");
     $("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
     $("#LastPayDate").val(month + "/01/" + year);
-    $("#NextPayDate").val(month + "/15/" + year);
+    $("#NextPayDate").val(month +  "/15/" + year);
     $("#PayPeriodTypeID").val(3);
 
     //COAPPLICANT INFO
