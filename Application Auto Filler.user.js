@@ -162,6 +162,8 @@ function randomSocial() {
 }
 
 function hasCoApplicant() {
+	return false;
+	// Leaving this because the business will change their mind about this
     return confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
 }
 
@@ -240,7 +242,7 @@ function xmlRequest(url){
 if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.location.protocol != "https:")
 {
     var salesTax = confirm("Are you testing sales tax?");
-    var hasCoApp = confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
+    var hasCoApp = false; //confirm("Should this Applicant have a Co-Applicant?\nMake sure to Refresh if you used the Back Button.");
     $.ajax({
         url: 'https://randomuser.me/api/?nat=us',
         dataType: 'json',
@@ -310,13 +312,14 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
     $("#SecondaryPhone").val(randomPhone());
     $("#IsSecondaryPhoneCell").val(true);
 
+	// Must be <7.5k
     if(window.location.protocol == "https:")
     {
-        $("#MonthlyIncome").val(10000);
+        $("#MonthlyIncome").val(5000);
     }
     else
     {
-        $("#MonthlyIncome").val(randomNumBetween(2, 15) * 1000);
+        $("#MonthlyIncome").val(randomNumBetween(2, 7) * 1000);
     }
 
 
@@ -379,8 +382,24 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
     var hireYear = appendLessThan10(randomNumBetween(year - 20, year - 1));
     $("#YearsAtJob").val("2");
     $("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
-    $("#LastPayDate").val(month + "/01/" + year);
-    $("#NextPayDate").val(month +  "/15/" + year);
+	
+	var payDate = new Date();
+	if(today.getDay() >= 15) {
+		// after the 15th
+		// last pay date is the 15th this month
+		// next pay date is 1st of next month
+		$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/15/" + payDate.getFullYear());
+		payDate.setMonth(payDate.getMonth() + 1);
+		$("#NextPayDate").val(appendLessThan10(payDate.getMonth()) +  "/01/" + payDate.getFullYear());
+	} else {
+		// before the 15th
+		// last pay date is the 1st this month
+		// next pay date is 15th of next month
+		$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/01/" + payDate.getFullYear());
+		payDate.setMonth(payDate.getMonth() + 1);
+		$("#NextPayDate").val(appendLessThan10(payDate.getMonth()) +  "/15/" + payDate.getFullYear());
+	}
+	
     $("#PayPeriodTypeID").val(3);
 
     //COAPPLICANT INFO
