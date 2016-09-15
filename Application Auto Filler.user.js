@@ -387,19 +387,19 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 		$("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 
 		var payDate = new Date();
-		if(today.getDay() >= 15) {
+		if(today.getDate() >= 15) {
 			// after the 15th
 			// last pay date is the 15th this month
 			// next pay date is 1st of next month
-			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/15/" + payDate.getFullYear());
 			payDate.setMonth(payDate.getMonth() + 1);
-			$("#NextPayDate").val(appendLessThan10(payDate.getMonth()) +  "/01/" + payDate.getFullYear());
+			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/15/" + payDate.getFullYear());
+			$("#NextPayDate").val(appendLessThan10(payDate.getMonth()+1) +  "/01/" + payDate.getFullYear());
 		} else {
 			// before the 15th
 			// last pay date is the 1st this month
 			// next pay date is 15th of next month
-			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/01/" + payDate.getFullYear());
 			payDate.setMonth(payDate.getMonth() + 1);
+			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/01/" + payDate.getFullYear());
 			$("#NextPayDate").val(appendLessThan10(payDate.getMonth()) +  "/15/" + payDate.getFullYear());
 		}
 
