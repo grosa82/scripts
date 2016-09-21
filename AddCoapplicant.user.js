@@ -8,6 +8,7 @@
 // @include      */Dealers/CreateCoApplicant/*
 // @exclude      https://*
 // @updateURL    https://raw.githubusercontent.com/emartinez1621/scripts/master/AddCoapplicant.user.js
+// @updateURL    https://raw.githubusercontent.com/emartinez1621/scripts/master/AddCoapplicant.user.js
 // @grant        none
 // ==/UserScript==
 
