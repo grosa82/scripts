@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Skip to Login
 // @namespace    http://github.com/emartinez1621
-// @version      0.2
+// @version      0.5
 // @description  Skip to the login page if on the homescreen ONLY WORKING FOR GITHUB ATM WILL ADD MORE AS I FIND MORE
 // @author       emartinez1621
 // @match        https://github.com/
