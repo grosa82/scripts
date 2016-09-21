@@ -7,7 +7,7 @@
 // @include      */Applicants/CreateCoApplicant/*
 // @include      */Dealers/CreateCoApplicant/*
 // @exclude      https://*
-// @updateURL    https://raw.githubusercontent.com/emartinez1621/scripts/master/AddCoapplicant.user.js
+// @updateURL    https://github.com/emartinez1621/scripts/raw/master/CrestScripts/Application%20Auto%20Filler.user.js
 // @grant        none
 // ==/UserScript==
 
