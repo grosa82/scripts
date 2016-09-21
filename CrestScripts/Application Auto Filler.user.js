@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Add Coapplicant
 // @namespace    */Applicants/CreateCoApplicant/*
-// @version      2.0
+// @version      12.0
 // @description  Automatically fills in fields to create coapplicant. Works in the agent portal and the retailer portal. 
 // @author       Eduardo Martinez
 // @include      */Applicants/CreateCoApplicant/*
