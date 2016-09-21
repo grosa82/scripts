@@ -12,7 +12,7 @@
 // @require      https://cdn.emailjs.com/dist/email.min.js
 // @require      https://www.gstatic.com/firebasejs/3.3.0/firebase.js
 // @grant        GM_xmlhttpRequest
-// @updateURL    https://github.com/emartinez1621/scripts/raw/master/CrestScripts/Application%20Auto%20Filler.user.js
+// @updateURL    https://github.com/emartinez1621/scripts/raw/master/Application%20Auto%20Filler.user.js
 // ==/UserScript==
 var config = {
 	apiKey: "AIzaSyBzfpCQCoWRjxWkeO6H1E7vh4A5W9ebdsg",
