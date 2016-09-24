@@ -1,4 +1,3 @@
-export class RandomGeneration {
 
     randomNumWithXDigits(n) {
         var y = findMaxFromPlace(n);
@@ -6,4 +5,3 @@ export class RandomGeneration {
         return Math.floor(Math.random() * (y - x) + x);
     }
     
-}
