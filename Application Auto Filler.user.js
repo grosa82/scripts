@@ -275,14 +275,6 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 						$("#MainDealerID").val(11000);
 					}
 				}
-				else if(salesTax && window.location.protocol != "https:")
-				{
-					xmlRequest(testUrl);
-					if(salesTrainingTeam.includes(getUsername()))
-					{
-						$("#MainDealerID").val(10837);
-					}
-				}
 				else if(!salesTax && window.location.protocol == "https:")
 				{
 					if(salesTrainingTeam.includes(getUsername()))
@@ -295,6 +287,10 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 						$("#MainDealerID").val(3203);
 						setRandomAddress(streetLine1);
 					}
+				}
+				else if(salesTax && window.location.protocol != "https:")
+				{
+					xmlRequest(testUrl);
 				}
 				else
 				{
