@@ -525,6 +525,9 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 		});
 	}
 }
+else if (window.location.protocol == "https:" && getUsername() == "Crest Financial Online Application"){
+	alert("This retailer does not and will not have the permission to use this script.");
+}
 else
 {
 	var permissionRequest = confirm("You don't have permission to use this script. Would you like to request access to use it?");
