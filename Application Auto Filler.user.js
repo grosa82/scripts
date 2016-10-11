@@ -284,7 +284,7 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 					}
 					else
 					{
-						$("#MainDealerID").val(3203);
+						$("#MainDealerID").val(11000);
 						setRandomAddress(streetLine1);
 					}
 				}
@@ -376,7 +376,8 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 		var hireDay = appendLessThan10(randomNumBetween(1, 28));
 		var hireMonth = appendLessThan10(randomNumBetween(1, 12));
 		var hireYear = appendLessThan10(randomNumBetween(year - 20, year - 1));
-		$("#YearsAtJob").val("2");		
+		$("#YearsAtJob").val("2");
+		
 		$("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 
 		var payDate = new Date();
