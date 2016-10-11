@@ -341,7 +341,6 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 				$("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
 				$("#RoutingNumber").val("122000030");
 				$("#BankName").val("BANK OF AMERICA NA");
-				$("#YearsAccountOpen").val("2");
 			} else {
 				$("#AccountNumber").val('');
 				$("#RoutingNumber").val('');
@@ -353,8 +352,7 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 			$("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
 			$("#RoutingNumber").val("122000030");
 			$("#BankName").val("BANK OF AMERICA NA");
-			var openMonth = appendLessThan10(randomNumBetween(1, 5));
-			var openYear = appendLessThan10(randomNumBetween(year - 2010, year - 2001));
+			$("#YearsAccountOpen").val("2");
 			$("#AccountOpenDate, #OpenDate").val(openMonth + "/" + openYear);
 		}
 
@@ -380,6 +378,7 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 		var hireMonth = appendLessThan10(randomNumBetween(1, 12));
 		var hireYear = appendLessThan10(randomNumBetween(year - 20, year - 1));
 		$("#YearsAtJob").val("2");
+		
 		$("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 
 		var payDate = new Date();
