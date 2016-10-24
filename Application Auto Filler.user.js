@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      12.0
+// @version      12.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -328,6 +328,7 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 			$("#LoanAmount").val("1500");
 			$("#DriversLicenseNumber").val("DRIVERS-LICENSE-" + randomNumWithXDigits(7));
 			$("#DriversLicenseState").val("UT");
+			$("#OwnershipTypeID").val(randomNumBetween(1,4));
 
 			var hba = $("#HasBankAccount").val().toLowerCase() === "true";
 			var uba = $("#AllowUnbankedCustomers").val().toLowerCase() === "true";
@@ -341,6 +342,8 @@ if(window.location.protocol == "https:" && checkAuth(getUsername()) || window.lo
 				$("#AccountNumberEntry, #AccountNumber").val(randomNumWithXDigits(14));
 				$("#RoutingNumber").val("122000030");
 				$("#BankName").val("BANK OF AMERICA NA");
+				$("#YearsAccountOpen").val("2");
+				
 			} else {
 				$("#AccountNumber").val('');
 				$("#RoutingNumber").val('');
