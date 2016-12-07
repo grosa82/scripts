@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      13.0
+// @version      13.5
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -30,7 +30,7 @@ var ipr = $("#InitialPaymentRequired").val().toLowerCase() === "true";
 var fpr = $("#FirstPaymentRequired").val().toLowerCase() === "true";
 var bankInfoReq = (!uba || hba);
 var cardInfoReq = (fpr || ipr || (uba && !hba));
-
+var statesWeDontDoBusinessWith = ["NJ", "MN", "WI", "VT"];
 
 function capitalizeFirstLetter(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
@@ -197,20 +197,15 @@ function setValidAddress(url){
 				var $state = $xml.find("state");
 				var $zipcode = $xml.find("zipcode");
 
-				$("#StreetLine1").val($street[0].innerHTML);
-				$("#City").val($city[0].innerHTML);
-				$("#StateID").val($state[0].innerHTML);
-				$("#PostalCode").val($zipcode[0].innerHTML);
-
-				console.log([
-					response.status,
-					response.statusText,
-					response.readyState,
-					response.responseHeaders,
-					response.responseText,
-					response.finalUrl,
-					responseXML
-				].join("\n"));
+				if(statesWeDontDoBusinessWith.includes($state[0].innerHTML)){
+					setValidAddress(url);
+				}
+				else{
+					$("#StreetLine1").val($street[0].innerHTML);
+					$("#City").val($city[0].innerHTML);
+					$("#StateID").val($state[0].innerHTML);
+					$("#PostalCode").val($zipcode[0].innerHTML);
+				}
 			}
 			else{
 				console.log("wtf");
