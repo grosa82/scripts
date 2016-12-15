@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Application Auto Filler
 // @namespace    */Applicants/CreateApplicant/*
-// @version      13.5
+// @version      14.0
 // @description  Automatically fills out an application for you with the option to fill out the Co-Applicant.
 //               Dynamically clears out hidden Bank & Card form items and fills them back in upon becoming visible.
 //               When Has Co-Applicant checkbox is deselected after initial page load, the Co-Applicant form items are cleared out.
@@ -149,7 +149,7 @@ function setPayDates(){
 		// next pay date is 1st of next month
 		payDate.setMonth(payDate.getMonth() + 1);			
 		if(payDate.getMonth() === 0){
-			$("#LastPayDate").val("12/15/" + payDate.getFullYear() - 1);
+			$("#LastPayDate").val("12/15/" + year);
 			$("#NextPayDate").val("01/01/" + payDate.getFullYear());
 		}
 		else{
