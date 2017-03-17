@@ -111,7 +111,7 @@ $(document).ready(function(){
   }
 
   $.ajax({
-      url: 'http://api.randomuser.me/?nat=us',
+      url: 'https://randomuser.me/api/?nat=us',
     dataType: 'json',
     success: function(data){
       var user = data.results[0];
