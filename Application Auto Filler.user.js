@@ -149,11 +149,11 @@ function setPayDates(){
 		// next pay date is 1st of next month
 		payDate.setMonth(payDate.getMonth() + 1);			
 		if(payDate.getMonth() === 0){
-			$("#LastPayDate").val("12/15/" + year);
+			//$("#LastPayDate").val("");
 			$("#NextPayDate").val("01/01/" + payDate.getFullYear());
 		}
 		else{
-			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/15/" + payDate.getFullYear() - 1);
+			//$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/15/" + payDate.getFullYear() - 1);
 			$("#NextPayDate").val(appendLessThan10(payDate.getMonth()+1) +  "/01/" + payDate.getFullYear());
 		}
 	} 
@@ -164,11 +164,11 @@ function setPayDates(){
 		payDate.setMonth(payDate.getMonth() + 1);
 		if(payDate.getMonth() === 0){
 			payDate.setMonth(payDate.getMonth()-1);
-			$("#LastPayDate").val("12/01/" + payDate.getFullYear());
+			//$("#LastPayDate").val("12/01/" + payDate.getFullYear());
 			$("#NextPayDate").val("12/15/" + payDate.getFullYear());
 		}
 		else{
-			$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/01/" + payDate.getFullYear());
+			//$("#LastPayDate").val(appendLessThan10(payDate.getMonth()) + "/01/" + payDate.getFullYear());
 			$("#NextPayDate").val(appendLessThan10(payDate.getMonth()) +  "/15/" + payDate.getFullYear());
 		}
 	}
@@ -205,6 +205,7 @@ function setValidAddress(url){
 					$("#City").val($city[0].innerHTML);
 					$("#StateID").val($state[0].innerHTML);
 					$("#PostalCode").val($zipcode[0].innerHTML);
+					$("#BillingPostalCode").val($zipcode[0].innerHTML);
 				}
 			}
 			else{
@@ -295,5 +296,5 @@ if(confirm("Do you want to autofill the application?"))
 	$("#YearsAtJob").val("2");
 	$("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 	setPayDates();
-	$("#PayPeriodTypeID").val(3);
+	$("#PayPeriodTypeID").val(4);
 }
