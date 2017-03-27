@@ -297,4 +297,5 @@ if(confirm("Do you want to autofill the application?"))
 	$("#HireDate").val(hireMonth + "/" + hireDay + "/" + hireYear);
 	setPayDates();
 	$("#PayPeriodTypeID").val(4);
+	$("#LastPaycheck").val(randomNumBetween(2000, 4500)); // Added on ticket #9404
 }
